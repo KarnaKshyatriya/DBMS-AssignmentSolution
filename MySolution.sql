@@ -48,7 +48,7 @@ create table if not exists `PRICE`
 #600 KM s?
 select Gender, count(Gender) as "Number of Customer"
 from `passenger`
-where distance>600
+where distance>=600
 group by Gender;
 
 #4) Find the minimum ticket price for Sleeper Bus
@@ -69,7 +69,7 @@ on c.Distance=p.Distance and c.Bus_Type=p.Bus_Type;
 
 select p.Passenger_name, c.Price from passenger p
 inner join price c on c.Bus_Type=p.Bus_Type
-where p.Distance>1000 and p.Bus_Type="Sitting";
+where p.Distance>=1000 and p.Bus_Type="Sitting";
 
 #8) What will be the Sitting and Sleeper bus charge for Pallavi to travel from Bangalore to
 #Panaji?
