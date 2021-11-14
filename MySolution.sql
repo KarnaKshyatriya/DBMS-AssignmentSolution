@@ -68,7 +68,8 @@ on c.Distance=p.Distance and c.Bus_Type=p.Bus_Type;
 #distance of 1000 KM s 
 
 select p.Passenger_name, c.Price from passenger p
-inner join price c where c.Distance>=1000 and c.Bus_Type="Sitting";
+inner join price c on c.Bus_Type=p.Bus_Type
+where p.Distance>1000 and p.Bus_Type="Sitting";
 
 #8) What will be the Sitting and Sleeper bus charge for Pallavi to travel from Bangalore to
 #Panaji?
