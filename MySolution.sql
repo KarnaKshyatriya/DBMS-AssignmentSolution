@@ -52,7 +52,7 @@ where distance>=600
 group by Gender;
 
 #4) Find the minimum ticket price for Sleeper Bus
-select min(price) as "minimum ticket price for Sleeper Bus" from `price`;
+select min(price) as "minimum ticket price for Sleeper Bus" from `price` where Bus_Type="Sleeper";
 
 #5) Select passenger names whose names start with character 'S' 
 select `Passenger_name` from `PASSENGER` where Passenger_name like 'S%';
@@ -64,6 +64,8 @@ from price c
 right join passenger p
 on c.Distance=p.Distance and c.Bus_Type=p.Bus_Type;
 
+#in the database "sitting, 500" is present two times. for that reason distinct keyword is used
+
 #7) What is the passenger name and his/her ticket price who travelled in Sitting bus for a
 #distance of 1000 KM s 
 
@@ -71,10 +73,12 @@ select p.Passenger_name, c.Price from passenger p
 inner join price c on c.Bus_Type=p.Bus_Type
 where p.Distance>=1000 and p.Bus_Type="Sitting";
 
+#there is no one who sat in the sitting bus for distance>1000. change it >=500 & 14 records will be returned since "500 sitting two times, duplicate result will return
+
 #8) What will be the Sitting and Sleeper bus charge for Pallavi to travel from Bangalore to
 #Panaji?
-select c.price, c.Bus_Type from price c where  c.distance=
-(select distance from passenger p where p.Passenger_name="Pallavi" and p.Boarding_City="Panaji" and p.Destination_City="Bengaluru") ;
+select c.price, c.Bus_Type from price c where  c.distance in
+(select distance from passenger p where p.Passenger_name="Pallavi" and p.Boarding_City="Panaji" and p.Destination_City="Bengaluru");
 
 
 
